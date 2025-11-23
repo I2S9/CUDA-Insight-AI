@@ -1,0 +1,62 @@
+{
+  "tools": [
+    {
+      "type": "function",
+      "function": {
+        "name": "static_analyzer",
+        "description": "Performs static analysis on a CUDA kernel source file. Analyzes kernel structure, indexing patterns, memory access patterns, and potential performance issues like warp divergence.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "file_path": {
+              "type": "string",
+              "description": "Path to the CUDA .cu source file to analyze"
+            }
+          },
+          "required": ["file_path"]
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "profiler",
+        "description": "Profiles a CUDA kernel to measure runtime performance metrics including execution time, variance, and statistics. Requires a compiled kernel binary.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "kernel_info": {
+              "type": "object",
+              "description": "Dictionary containing kernel information with 'compiled_file' or 'kernel_file' and 'kernel_name'",
+              "properties": {
+                "compiled_file": {
+                  "type": "string",
+                  "description": "Path to the compiled kernel library (.so or .dll)"
+                },
+                "kernel_file": {
+                  "type": "string",
+                  "description": "Path to the source CUDA file"
+                },
+                "kernel_name": {
+                  "type": "string",
+                  "description": "Name of the kernel function"
+                }
+              }
+            },
+            "function_name": {
+              "type": "string",
+              "description": "Name of the function to profile (e.g., 'test_saxpy')"
+            },
+            "iterations": {
+              "type": "integer",
+              "description": "Number of profiling iterations (default: 10)",
+              "default": 10
+            }
+          },
+          "required": ["kernel_info"]
+        }
+      }
+    }
+  ]
+}
+
