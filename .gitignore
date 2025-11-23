@@ -1,0 +1,9 @@
+# Ignore all dot files (e.g., .cursorrules, .env, etc.)
+.*
+
+# But keep .git directory
+!.git/
+
+# And keep .gitignore itself
+!.gitignore
+

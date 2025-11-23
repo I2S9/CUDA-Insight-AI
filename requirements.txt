@@ -1,0 +1,22 @@
+# Core dependencies
+python>=3.8
+
+# LLM client (OpenAI or compatible)
+openai>=1.0.0
+
+# Code parsing and analysis
+pycparser>=2.21
+ast-comments>=1.1.1
+
+# CLI interface
+typer>=0.9.0
+rich>=13.0.0
+
+# Testing
+pytest>=7.4.0
+pytest-cov>=4.1.0
+
+# Utilities
+pydantic>=2.0.0
+pyyaml>=6.0
+
