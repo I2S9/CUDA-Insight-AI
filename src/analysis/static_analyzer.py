@@ -1,6 +1,8 @@
 """Static analyzer for CUDA kernel source files."""
 
+import json
 import re
+import sys
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple
 
@@ -316,4 +318,18 @@ def _analyze_memory_access(body: str) -> Tuple[str, List[str]]:
             return "likely_coalesced_with_offset", memory_accesses
     
     return "unknown_access_pattern", memory_accesses
+
+
+if __name__ == "__main__":
+    if len(sys.argv) < 2:
+        print("Usage: python static_analyzer.py <path_to_cuda_file.cu>", file=sys.stderr)
+        sys.exit(1)
+    
+    cuda_file_path = sys.argv[1]
+    try:
+        result = analyze_cuda_file(cuda_file_path)
+        print(json.dumps(result, indent=2))
+    except Exception as e:
+        print(f"Error: {e}", file=sys.stderr)
+        sys.exit(1)
 
