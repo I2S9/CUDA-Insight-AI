@@ -2,7 +2,23 @@
 
 ## Objective
 
-CUDA-Insight-AI is a command-line tool that analyzes CUDA kernels by combining static analysis, optional runtime profiling, and an LLM agent with tool-calling. The goal is to help developers detect potential performance issues and receive optimization suggestions for GPU code (CUDA kernels).
+>  CUDA-Insight-AI is a command-line tool that analyzes CUDA kernels by combining static analysis, optional runtime profiling, and an LLM agent with tool-calling. The goal is to help developers detect potential performance issues and receive optimization suggestions for GPU code (CUDA kernels).
+
+## Why This Project Matters
+
+- Helps developers understand GPU performance bottlenecks without deep CUDA expertise
+- Provides AI-driven optimization guidance that combines static analysis and runtime metrics
+- Bridges traditional developer tools and modern LLM agentic systems for code analysis
+- Useful for GPU/AI engineering education and performance optimization workflows
+
+## Tech Stack
+
+- Python (CLI, orchestration)
+- CUDA C/C++ (kernels)
+- C++17 (profiler)
+- OpenAI API / LLM function calling
+- JSON-based tool-calling
+- CMake (C++ build)
 
 ## Project Architecture
 
@@ -28,13 +44,26 @@ CUDA-Insight-AI/
 │       └── CMakeLists.txt                  # Build configuration
 ├── tests/                                  # Unit tests
 ├── examples/                               # Usage examples
-├── report/                                 # LaTeX reports
+├── report/                                 # LaTeX report
 └── requirements.txt                        # Python dependencies
 ```
 
 ## Analysis Pipeline
 
 The analysis pipeline follows three main steps:
+
+```
+CUDA (.cu file)
+        │
+        ▼
+Static Analyzer ────► JSON (analysis)
+        │
+        ▼
+   Profiler (opt) ─► JSON (metrics)
+        │
+        ▼
+    LLM Agent ─────► Final Report
+```
 
 ### 1. Static Analysis
 
